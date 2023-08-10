@@ -61,7 +61,7 @@ class EbayReport:
         return sorted_listings
 
     def create_sheet(data: list, keywords):
-        keywords.replace(" ", "_")
+        keywords = keywords.lower().replace(" ", "_")
 
         workbook = xl.Workbook()
         sheet = workbook.active

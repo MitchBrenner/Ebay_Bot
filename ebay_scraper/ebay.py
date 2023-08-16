@@ -3,6 +3,7 @@ from selenium import webdriver
 import os
 from selenium.webdriver.common.by import By
 from ebay_scraper.ebay_report import EbayReport
+import time
 
 test_listings = [
     "Dean & Tyler Patch Collar Nylon Collar with Removable Patches",
@@ -79,6 +80,15 @@ class Ebay(webdriver.Chrome):
         new_items_el = self.find_element(By.ID, "s0-1-17-6[4]-[0]-LH_ItemCondition")
         new_items_el.click()
         """
+
+        # Sort By
+        # Sort by time: newly listed
+        sort_by_time_el = self.find_element(By.ID, "s0-1-17-8[9]-1[0]-_sop")
+        sort_by_time_el.click()
+        time_el = sort_by_time_el.find_element(
+            By.CSS_SELECTOR, 'option[text="Time: newly listed"]'
+        )
+        time_el.click()
 
         # Sort by list view
         # And show 240 results per page

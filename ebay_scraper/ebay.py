@@ -19,10 +19,14 @@ test_listings = [
 
 class Ebay(webdriver.Chrome):
     # Constructor Function
-    # if using mac set driver_path=r"./chromedriver_mac64"
-    # if using windows set driver_path=r"./chromedriver_win32"
     def __init__(self, driver_path=r"./chromedriver_win32"):
-        self.driver_path = driver_path
+        # if using mac set driver_path=r"./chromedriver_mac64"
+        # if using windows set driver_path=r"./chromedriver_win32"
+        if os.name == "posix":
+            self.driver_path = r"./chromedriver_mac64"
+        elif os.name == "nt":
+            self.driver_path = r"./chromedriver_win32"
+
         os.environ["PATH"] = self.driver_path
         super(Ebay, self).__init__()
         self.implicitly_wait(15)
